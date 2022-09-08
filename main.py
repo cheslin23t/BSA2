@@ -16,7 +16,7 @@ def isgoingform():
 @app.route('/isgoingform', methods = ['POST'])
 def isgoingformpost():
     # print(request.form)
-    trip = request.form['trip']  # colin needs to send this via form
+    trip = request.form['trip']  
     email = request.form['email']
     name = request.form['name']
     phone = request.form['phone']
@@ -29,6 +29,7 @@ def isgoingformpost():
         'email': email,
         'rsvp': rsvp
     }
+    
     
     return request.form
 
