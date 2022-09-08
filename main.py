@@ -1,5 +1,6 @@
-
 from flask import Flask, render_template, send_from_directory, request
+from replit import db
+
 
 app = Flask(__name__)
 
@@ -14,7 +15,21 @@ def isgoingform():
 
 @app.route('/isgoingform', methods = ['POST'])
 def isgoingformpost():
-    print(request.form)
+    # print(request.form)
+    trip = request.form['trip']  # colin needs to send this via form
+    email = request.form['email']
+    name = request.form['name']
+    phone = request.form['phone']
+    rsvp = 'Yes' if request.form['yes_no'] == 'on' else 'No'
+
+    # store trip response in replit key/value store
+    db[(trip, name)] = {
+        'name': name,
+        'phone': phone,
+        'email': email,
+        'rsvp': rsvp
+    }
+    
     return request.form
 
 @app.route('/static/<path:path>')
