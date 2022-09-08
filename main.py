@@ -1,7 +1,13 @@
 from flask import Flask, render_template, send_from_directory, request
 from replit import db
+import hashlib
+
+def makeHash(string):
+    hashed_string = hashlib.sha256(string.encode('utf-8')).hexdigest()
+    return hashed_string
 
 
+    
 app = Flask(__name__)
 
 
@@ -12,6 +18,14 @@ def index():
 @app.route('/isgoingform', methods = ['GET'])
 def isgoingform():
     return render_template('isgoingform.html')
+
+@app.route('/login', methods = ['GET'])
+def loginform():
+    return render_template('login.html')
+
+@app.route('/login', methods = ['POST'])
+def loginformpost():
+    return "yay you logged in"
 
 @app.route('/isgoingform', methods = ['POST'])
 def isgoingformpost():
