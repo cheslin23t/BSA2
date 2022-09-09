@@ -1,3 +1,5 @@
+# Note to self, bring to school band binder with music
+
 from flask import Flask, render_template, send_from_directory, request
 from replit import db
 import hashlib
