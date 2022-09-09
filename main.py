@@ -24,6 +24,13 @@ def loginform():
     else:
         return "yay you logged in"
 
+@app.route('/trip_rsvp', methods = ['GET'])
+def trip_rsvp():
+    going = db['irv_woods_0922']['going']
+    not_going = db['irv_woods_0922']['not_going']
+
+    return render_template('trip_rsvp.html', going=going, not_going=not_going)
+
 
 @app.route('/isgoingform', methods = ['POST'])
 def isgoingformpost():
