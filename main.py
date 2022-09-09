@@ -6,8 +6,6 @@ def makeHash(string):
     hashed_string = hashlib.sha256(string.encode('utf-8')).hexdigest()
     return hashed_string
 
-
-    
 app = Flask(__name__)
 
 
@@ -19,30 +17,56 @@ def index():
 def isgoingform():
     return render_template('isgoingform.html')
 
-@app.route('/login', methods = ['GET'])
+@app.route('/login', methods = ['GET', 'POST'])
 def loginform():
-    return render_template('login.html')
+    if request.method == 'GET':
+        return render_template('login.html')
+    else:
+        return "yay you logged in"
 
-@app.route('/login', methods = ['POST'])
-def loginformpost():
-    return "yay you logged in"
+@app.route('/trip_rsvp', methods = ['GET'])
+def trip_rsvp():
+    going = db['irv_woods_0922']['going']
+    not_going = db['irv_woods_0922']['not_going']
+
+    return render_template('trip_rsvp.html', going=going, not_going=not_going)
+
 
 @app.route('/isgoingform', methods = ['POST'])
 def isgoingformpost():
     # print(request.form)
-    trip = request.form['trip']  # colin needs to send this via form
+    trip = request.form['trip']  
     email = request.form['email']
     name = request.form['name']
     phone = request.form['phone']
-    rsvp = 'Yes' if request.form['yes_no'] == 'on' else 'No'
+    rsvp = 'Yes' if request.form['yes_no'] == '1' else 'No'
 
     # store trip response in replit key/value store
-    db[(trip, name)] = {
+    scout = {
         'name': name,
         'phone': phone,
-        'email': email,
-        'rsvp': rsvp
+        'email': email
     }
+
+    if trip in db:
+        if rsvp == 'Yes':
+            db[trip]['going'].append(scout)
+        else:
+            db[trip]['not_going'].append(scout)
+    else:
+        if rsvp == 'Yes':
+            db[trip] = {
+                'going': [scout],
+                'not_going': []
+            }
+        else:
+            db[trip] = {
+                'going': [],
+                'not_going': [scout]
+            }
+            
+    print(db['irv_woods_0922'])
+
     
     return request.form
 
