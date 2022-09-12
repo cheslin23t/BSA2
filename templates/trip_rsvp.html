@@ -4,7 +4,8 @@
 </head>
 <body>
     <center>
-        <h1>Trip RSVP</h1>
+        {% for trip in allRsvp %}
+        <h1>Trip RSVP - {{trip['name']}}</h1>
         <br>
         <br>
             <table>
@@ -27,7 +28,7 @@
                     
                     <td></td><td></td>
                 </tr>
-                {% for scout in going %}
+                {% for scout in trip['going'] %}
                 <tr>
                     <td>
                         {{ scout['name'] }}
@@ -44,7 +45,7 @@
                     <td> <b>IS</b> Going </td>
                 </tr>
                 {% endfor %}
-                {% for scout in not_going %}
+                {% for scout in trip['not_going'] %}
                 <tr>
                     <td>
                         {{ scout['name'] }}
@@ -63,5 +64,7 @@
                 {% endfor %}
                 
             </table>
+            
     </center>
+    {% endfor %}
 </body>

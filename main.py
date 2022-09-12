@@ -98,10 +98,14 @@ def login():
 @login_required
 @admin_required
 def trip_rsvp():
-    going = db['irv_woods_0922']['going']
-    not_going = db['irv_woods_0922']['not_going']
+    trips = ['irv_woods_0922']
+    allRsvp = {}
+    for trip in trips:
+        going = db[trip]['going']
+        not_going = db[trip]['not_going']
+        allRsvp[trip] = {'going': going, 'not_going': not_going, 'name':trip }
 
-    return render_template('trip_rsvp.html', going=going, not_going=not_going)
+    return render_template('trip_rsvp.html', allRsvp=allRsvp)
 
 @app.route('/test')
 def test():
