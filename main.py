@@ -20,7 +20,7 @@ def makeHash(string):
 app = Flask(__name__)
 
 app.config["SESSION_PERMANENT"] = True
-app.config["SESSION_TYPE"] = "filesystem"
+app.config["SESSION_TYPE"] = "redis"
 app.permanent_session_lifetime = timedelta(days=7)
 Session(app)
 
