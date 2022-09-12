@@ -1,15 +1,39 @@
 # Note to self, bring to school band binder with music
+# Session code taken from BYGTech
+from dotenv import load_dotenv, find_dotenv
 
-from flask import Flask, render_template, send_from_directory, request
-from replit import db
+load_dotenv(find_dotenv())
+from flask import Flask, render_template, send_from_directory, request, redirect, session, url_for, flash
+from flask_session import Session
+from functools import wraps
 import hashlib
-
+import os
+from replit import db
 def makeHash(string):
     hashed_string = hashlib.sha256(string.encode('utf-8')).hexdigest()
     return hashed_string
 
 app = Flask(__name__)
 
+def apology(message, file):
+    """Renders message as an apology to user."""
+    return render_template(file, message=message)
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("userid") is None:
+            return redirect("/login")
+        return f(*args, **kwargs)
+    return decorated_function
+
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("is_admin") == 0:
+            return redirect("/login")
+        return f(*args, **kwargs)
+    return decorated_function
 
 @app.route('/')
 def index():
@@ -19,13 +43,41 @@ def index():
 def isgoingform():
     return render_template('isgoingform.html')
 
-@app.route('/login', methods = ['GET', 'POST'])
-def loginform():
-    if request.method == 'GET':
-        return render_template('login.html')
-    else:
-        return "yay you logged in"
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    """Log user in."""
 
+    # forget any user_id
+    session.clear()
+
+    # if user reached route via POST (as by submitting a form via POST) 
+    if request.method == "POST":
+
+        # ensure username was submitted
+        if not request.form.get("username"):
+            return apology("Please enter an username.", "login.html")
+
+        # ensure password was submitted
+        elif not request.form.get("password"):
+            return apology("Please enter a password.", "login.html")
+
+        else:
+            username = request.form.get("username")
+            password = request.form.get("password")
+            passwordHashed = makeHash(password)
+        # remember which user has logged in
+        session["username"] = username
+        session["is_admin"] = 1
+
+        # redirect user to home page
+        return redirect(url_for("trip_rsvp"))
+
+    # else if user reached route via GET (as by clicking a link or via redirect)
+    else:
+        return render_template("login.html")
+
+@login_required
+@admin_required
 @app.route('/trip_rsvp', methods = ['GET'])
 def trip_rsvp():
     going = db['irv_woods_0922']['going']
@@ -75,4 +127,4 @@ def isgoingformpost():
 @app.route('/static/<path:path>')
 def send_report(path):
     return send_from_directory('static', path)
-app.run(host='0.0.0.0', port=81)
+app.run(host='0.0.0.0', port=10000)

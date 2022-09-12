@@ -7,6 +7,12 @@
         <h1>Admin Login</h1>
         <br>
         <br>
+        {% if message %}
+            <b style="color: red; ">{{ message }}</b>
+            <br>
+            <br>
+        {% endif %}
+        
         <form method="POST" action="/login">
             <table>
                 <tr>
