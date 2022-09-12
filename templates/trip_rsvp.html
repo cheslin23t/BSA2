@@ -7,19 +7,24 @@
         <h1>Trip RSVP</h1>
         <br>
         <br>
-        <form method="POST" action="/login">
             <table>
                 <th>
                     Scout
                 </th>
+                <th> </th>
                 <th>
                     Email
                 </th>
+                <th> </th>
                 <th>
                     Phone
                 </th>
+                <th> </th>
+                <th>
+                    RSVP
+                </th>
                 <tr>
-                    <td>GOING</td>
+                    
                     <td></td><td></td>
                 </tr>
                 {% for scout in going %}
@@ -27,37 +32,36 @@
                     <td>
                         {{ scout['name'] }}
                     </td>
+                    <td> </td>
                     <td>
                         {{ scout['email'] }}
                     </td>
+                    <td> </td>
                     <td>
                         {{ scout['phone'] }}
                     </td>
+                    <td> </td>
+                    <td> <b>IS</b> Going </td>
                 </tr>
                 {% endfor %}
-                <tr><td></td></tr>
-                <tr>
-                    <td>
-                        NOT GOING
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
                 {% for scout in not_going %}
                 <tr>
                     <td>
                         {{ scout['name'] }}
                     </td>
+                    <td> </td>
                     <td>
                         {{ scout['email'] }}
                     </td>
+                    <td> </td>
                     <td>
                         {{ scout['phone'] }}
                     </td>
+                    <td> </td>
+                    <td> <b>IS NOT</b> Going </td>
                 </tr>
                 {% endfor %}
+                
             </table>
-        </form>
     </center>
 </body>
