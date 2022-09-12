@@ -7,38 +7,53 @@ from flask import Flask, render_template, send_from_directory, request, redirect
 from flask_session import Session
 from functools import wraps
 import hashlib
+from datetime import datetime, timedelta, date
 import os
 from replit import db
 def makeHash(string):
     hashed_string = hashlib.sha256(string.encode('utf-8')).hexdigest()
     return hashed_string
 
+
+
+
 app = Flask(__name__)
+
+app.config["SESSION_PERMANENT"] = True
+app.config["SESSION_TYPE"] = "filesystem"
+app.permanent_session_lifetime = timedelta(days=7)
+Session(app)
 
 def apology(message, file):
     """Renders message as an apology to user."""
     return render_template(file, message=message)
 
 def login_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if session.get("userid") is None:
-            return redirect("/login")
-        return f(*args, **kwargs)
-    return decorated_function
+  @wraps(f)
+  def decorated_function(*args, **kwargs):
+    print('testt')
+    if session.get("is_loggedin") != 1:
+      return redirect("/login")
+    return f(*args, **kwargs)
+  return decorated_function
 
 def admin_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if session.get("is_admin") == 0:
-            return redirect("/login")
-        return f(*args, **kwargs)
-    return decorated_function
+  @wraps(f)
+  def decorated_function(*args, **kwargs):
+    if session.get("is_admin") == 0:
+      return redirect("/login")
+    return f(*args, **kwargs)
+  return decorated_function
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+@app.route('/logout')
+@login_required
+def logout():
+  session.clear()
+  return redirect('/')
 @app.route('/isgoingform', methods = ['GET'])
 def isgoingform():
     return render_template('isgoingform.html')
@@ -48,7 +63,8 @@ def login():
     """Log user in."""
 
     # forget any user_id
-    session.clear()
+    if session.get("is_loggedin") is not None:
+      return redirect('/')
 
     # if user reached route via POST (as by submitting a form via POST) 
     if request.method == "POST":
@@ -68,23 +84,30 @@ def login():
         # remember which user has logged in
         session["username"] = username
         session["is_admin"] = 1
+        session["is_loggedin"] = 1
 
         # redirect user to home page
-        return redirect(url_for("trip_rsvp"))
+        return redirect('/')
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("login.html")
 
+
+@app.route('/trip_rsvp', methods = ['GET'])
 @login_required
 @admin_required
-@app.route('/trip_rsvp', methods = ['GET'])
 def trip_rsvp():
     going = db['irv_woods_0922']['going']
     not_going = db['irv_woods_0922']['not_going']
 
     return render_template('trip_rsvp.html', going=going, not_going=not_going)
 
+@app.route('/test')
+def test():
+  print(session)
+  print(session.get("is_admin"))
+  return 'hi'
 
 @app.route('/isgoingform', methods = ['POST'])
 def isgoingformpost():
