@@ -4,7 +4,7 @@ from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 from flask import Flask, render_template, send_from_directory, request, redirect, session, url_for, flash
-from flask_session import Session
+# from flask_session import Session
 from functools import wraps
 import hashlib
 from datetime import datetime, timedelta, date
@@ -19,10 +19,7 @@ def makeHash(string):
 
 app = Flask(__name__)
 
-app.config["SESSION_PERMANENT"] = True
-app.config["SESSION_TYPE"] = "redis"
-app.permanent_session_lifetime = timedelta(days=7)
-Session(app)
+app.secret_key = os.getenv("SECRET_KEY")
 
 def apology(message, file):
     """Renders message as an apology to user."""
