@@ -4,7 +4,7 @@
 </head>
 <body>
     
-        {% for trip in allRsvp %}
+        {% for trip in reversed(allRsvp) %}
         <center>
         <h1>Trip RSVP - {{trip['name']}}</h1>
         <br>
@@ -62,6 +62,9 @@
                     <td> </td>
                     <td> <b>IS NOT</b> Going </td>
                 </tr>
+                <br>
+                <br>
+                <br>
                 {% endfor %}
                 
             </table>
