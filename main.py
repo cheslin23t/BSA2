@@ -52,7 +52,9 @@ def admin_required(f):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if session.get("is_loggedin") == 1:
+        return render_template("index.html", admin=True)
+    return render_template('index.html', admin=False)
 
 
 @app.route('/logout')
