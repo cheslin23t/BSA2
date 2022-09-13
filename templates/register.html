@@ -1,0 +1,37 @@
+<head>
+    <title>Admin Login Maker</title>
+
+</head>
+<body>
+    <center>
+        <h1>Admin Login Maker</h1>
+        <br>
+        <br>
+        {% if message %}
+            <b style="color: red; ">{{ message }}</b>
+            <br>
+            <br>
+        {% endif %}
+        
+        <form method="POST" action="/register">
+            <table>
+                <tr>
+                    <td>Root Password</td>
+                    <td><input type="password" name="rootpassword" placeholder="Enter Root Password"></td>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td><input type="text" name="username" placeholder="Enter Username"></td>
+                </tr>
+                <tr>
+                    <td>Hashed Password</td>
+                    <td><input type="password" name="password" placeholder="Enter Password"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" name="submit" value="Register"></td>
+                </tr>
+            </table>
+        </form>
+    </center>
+</body>
