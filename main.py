@@ -108,7 +108,7 @@ def trip_rsvp():
         not_going = []
       allRsvp.append({'going': going, 'not_going': not_going, 'name':readableTripNames[trip] })
     print(allRsvp)
-    return render_template('trip_rsvp.html', allRsvp=allRsvp)
+    return render_template('trip_rsvp.html', allRsvp=reversed(allRsvp))
 
 @app.route('/test')
 def test():
