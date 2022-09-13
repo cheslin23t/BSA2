@@ -95,13 +95,19 @@ def login():
 @login_required
 @admin_required
 def trip_rsvp():
-    trips = ['irv_woods_0922']
-    allRsvp = {}
+    trips = ['irv_woods_0922', 'irv_woods_0923']
+    readableTripNames = {'irv_woods_0922':'Irvington Woods Trip 2022-23', 'irv_woods_0923':'Irvington Woods Trip 2023-24'}
+    allRsvp = []
     for trip in trips:
+      try:
         going = db[trip]['going']
+        
         not_going = db[trip]['not_going']
-        allRsvp[trip] = {'going': going, 'not_going': not_going, 'name':trip }
-
+      except:
+        going = []
+        not_going = []
+      allRsvp.append({'going': going, 'not_going': not_going, 'name':readableTripNames[trip] })
+    print(allRsvp)
     return render_template('trip_rsvp.html', allRsvp=allRsvp)
 
 @app.route('/test')
@@ -113,7 +119,7 @@ def test():
 @app.route('/isgoingform', methods = ['POST'])
 def isgoingformpost():
     # print(request.form)
-    trip = request.form['trip']  
+    trip = "irv_woods_0923"
     email = request.form['email']
     name = request.form['name']
     phone = request.form['phone']
@@ -143,7 +149,6 @@ def isgoingformpost():
                 'not_going': [scout]
             }
             
-    print(db['irv_woods_0922'])
 
     
     return request.form
