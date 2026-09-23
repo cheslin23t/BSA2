@@ -1,19 +1,27 @@
 # BSA2
 
-BSA2 is an archived 2022 Flask project I initially built for my Boy Scout troop's website. It served as the troop's primary RSVP flow for trips: scouts and families could submit whether they were attending, and organizers could review the resulting going and not-going lists.
+BSA2 is a 2022 Flask project I initially built for my Boy Scout troop's website. It served as the troop's primary RSVP flow for trips: scouts and families submitted whether they were attending, and organizers reviewed separate going and not-going lists.
 
-**Project archive:** [ches.dev/BSA2](https://ches.dev/BSA2/)
+**Working project demo:** [ches.dev/BSA2](https://ches.dev/BSA2/)
 
-## What it explored
+## Try the original workflow
 
-- A Flask application with server-rendered templates
-- Trip-specific RSVP forms
-- Collection of attendee contact information
-- Storage of attendance responses in Replit's key/value database
-- A simple organizer-facing view of responses
+1. Open **Next Trip** and submit an RSVP using fictional details.
+2. Use the public demo login (`demo` / `troop55`).
+3. See the response in the organizer roster, add another response, or reset the samples.
+
+The public demo preserves the original Nicepage-era frontend and recreates the original Flask/Replit data flow in browser-local storage. Nothing is sent to a server. The visible login is a walkthrough device, not real authentication.
+
+## Original implementation
+
+- Flask routes and server-rendered templates
+- A trip-specific RSVP form
+- Replit's key/value database for responses
+- An organizer-facing roster grouped into going and not going
+- A black, gray, and orange visual system over outdoor photography
 
 ## Historical context
 
-This repository is being published as a snapshot of an early project, not as a maintained or production-ready application. It reflects the code and deployment conventions I was learning at the time. The implementation has limited validation, incomplete authentication, and dependencies tied to the former Replit environment.
+The Flask source remains an early-project snapshot, not a maintained production service. It has limited validation, incomplete authentication, and dependencies tied to the former Replit environment. Do not deploy the historical server unchanged or use it to collect personal information.
 
-Do not deploy this project unchanged or use it to collect personal information. It would need current dependency management, proper authentication and authorization, input validation, privacy controls, and removal of the committed development environment before reuse.
+The static public demo intentionally has no live troop calendar, real member data, server database, or production authentication.

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Organizer roster demo for the original Troop 55 RSVP project.">
+  <title>Trip RSVP — Troop 55 Demo</title>
+  <link rel="stylesheet" href="../static/index.css"><link rel="stylesheet" href="../demo.css"><script src="../demo.js" defer></script>
+</head>
+<body class="u-body u-xl-mode">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <aside class="demo-banner" aria-label="Demo notice"><strong>Organizer demo</strong><span>Only fictional, browser-local responses appear here.</span><a href="../about-demo/">How it works</a></aside>
+  <header class="u-clearfix u-grey-90 u-header" id="site-header"><div class="u-clearfix u-sheet u-sheet-1">
+    <a href="../" class="u-image u-logo u-image-1" aria-label="Troop 55 home"><img src="../static/clipart18896.png" class="u-logo-image u-logo-image-1" alt="Troop 55 emblem"></a>
+    <nav class="demo-nav demo-nav--always" aria-label="Primary navigation"><a href="../">Home</a><a href="../isgoingform/">Add RSVP</a><button id="logout-button" class="demo-secondary" type="button">Log out</button></nav>
+  </div></header>
+  <main id="main" class="demo-page demo-page--nested"><div class="demo-shell" id="demo-roster">
+    <h1 class="demo-title">Trip RSVP</h1><p class="demo-lead">Irvington Woods — organizer response view</p>
+    <noscript><p class="demo-note">JavaScript is off, so this page shows the fictional sample roster. Turn it on to add or reset browser-local responses.</p></noscript>
+    <div class="demo-card">
+      <div class="roster-toolbar"><div class="roster-counts" aria-label="Response totals"><span id="going-count">1 going</span><span id="not-going-count">1 not going</span></div><a class="demo-submit" href="../isgoingform/">Add another response</a></div>
+      <section class="roster-section" aria-labelledby="going-heading"><h2 id="going-heading">Going</h2><div class="roster-table-wrap"><table class="roster-table"><thead><tr><th scope="col">Scout</th><th scope="col">Email</th><th scope="col">Phone</th></tr></thead><tbody id="going-list"><tr><td>Alex Rivera</td><td>alex@example.com</td><td>(555) 010-2022</td></tr></tbody></table></div></section>
+      <section class="roster-section" aria-labelledby="not-going-heading"><h2 id="not-going-heading">Not going</h2><div class="roster-table-wrap"><table class="roster-table"><thead><tr><th scope="col">Scout</th><th scope="col">Email</th><th scope="col">Phone</th></tr></thead><tbody id="not-going-list"><tr><td>Jordan Lee</td><td>jordan@example.com</td><td>(555) 010-2055</td></tr></tbody></table></div></section>
+      <div class="reset-panel"><button id="ask-reset" class="demo-secondary" type="button">Reset demo data</button><div id="reset-confirm" class="reset-confirm" hidden><p>Replace all browser-local responses with the two fictional samples?</p><div class="form-actions"><button id="confirm-reset" class="demo-submit" type="button">Yes, reset</button><button id="cancel-reset" class="demo-secondary" type="button">Cancel</button></div></div><p id="roster-message" class="form-message" role="status" aria-live="polite"></p></div>
+    </div>
+  </div></main>
+  <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer"><div class="u-clearfix u-sheet u-sheet-1"><p class="demo-contact">BSA Troop 55 — Irvington, NY · Original project demo</p></div></footer>
+</body></html>

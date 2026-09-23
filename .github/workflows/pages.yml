@@ -1,14 +1,25 @@
-name: Deploy static archive to Pages
+name: Deploy original project demo to Pages
 
 on:
   push:
     branches: [main]
     paths:
       - index.html
-      - archive.css
-      - favicon.svg
+      - demo.css
+      - demo.js
       - .nojekyll
+      - about-demo/**
+      - isgoingform/**
+      - login/**
+      - trip_rsvp/**
+      - static/index.css
+      - static/Home.css
+      - static/jquery.js
+      - static/index.js
+      - static/clipart18896.png
       - static/0d70454a-a90f-44cc-a185-7d097cf1abe8-Tuscarora.webp
+      - static/split_rock-969x650.jpg
+      - static/ice_pond2-300x225.jpg
       - .github/workflows/pages.yml
   workflow_dispatch:
 
@@ -31,11 +42,14 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Stage public archive
+      - name: Stage public demo
         run: |
           mkdir -p _site/static
-          cp index.html archive.css favicon.svg .nojekyll _site/
-          cp static/0d70454a-a90f-44cc-a185-7d097cf1abe8-Tuscarora.webp _site/static/
+          cp index.html demo.css demo.js .nojekyll _site/
+          cp -R about-demo isgoingform login trip_rsvp _site/
+          cp static/index.css static/Home.css static/jquery.js static/index.js _site/static/
+          cp static/clipart18896.png static/0d70454a-a90f-44cc-a185-7d097cf1abe8-Tuscarora.webp _site/static/
+          cp static/split_rock-969x650.jpg static/ice_pond2-300x225.jpg _site/static/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
