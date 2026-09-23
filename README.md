@@ -2,6 +2,8 @@
 
 BSA2 is an archived 2022 Flask project I initially built for my Boy Scout troop's website. It served as the troop's primary RSVP flow for trips: scouts and families could submit whether they were attending, and organizers could review the resulting going and not-going lists.
 
+**Project archive:** [ches.dev/BSA2](https://ches.dev/BSA2/)
+
 ## What it explored
 
 - A Flask application with server-rendered templates
@@ -15,4 +17,3 @@ BSA2 is an archived 2022 Flask project I initially built for my Boy Scout troop'
 This repository is being published as a snapshot of an early project, not as a maintained or production-ready application. It reflects the code and deployment conventions I was learning at the time. The implementation has limited validation, incomplete authentication, and dependencies tied to the former Replit environment.
 
 Do not deploy this project unchanged or use it to collect personal information. It would need current dependency management, proper authentication and authorization, input validation, privacy controls, and removal of the committed development environment before reuse.
-

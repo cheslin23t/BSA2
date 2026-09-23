@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="An archived look at BSA2, a 2022 Flask RSVP system built for a Boy Scout troop website."
+    />
+    <meta name="theme-color" content="#10251c" />
+    <title>BSA2 — Troop RSVP Archive</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./archive.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to project</a>
+
+    <header class="site-header">
+      <a class="wordmark" href="https://ches.dev" aria-label="Colin Heslin portfolio">
+        <span>CH</span>
+        <span>BSA2 archive</span>
+      </a>
+      <nav aria-label="Project links">
+        <a href="https://github.com/cheslin23t/BSA2">Source</a>
+        <a href="https://ches.dev/#journey">Portfolio</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="project-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span>2022</span> Archived troop software</p>
+          <h1 id="project-title">The RSVP system behind troop trips.</h1>
+          <p class="lede">
+            I initially built BSA2 for my Boy Scout troop’s website. It became
+            the primary way scouts and families responded to trip invitations,
+            while organizers got a simple view of who was and was not attending.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/cheslin23t/BSA2">
+              View source <span aria-hidden="true">↗</span>
+            </a>
+            <a class="button button-secondary" href="#workflow">
+              See the workflow <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+          <p class="archive-note">
+            <span aria-hidden="true">●</span>
+            Historical snapshot — the RSVP form is no longer active.
+          </p>
+        </div>
+
+        <figure class="hero-image">
+          <img
+            src="./static/0d70454a-a90f-44cc-a185-7d097cf1abe8-Tuscarora.webp"
+            alt="A wooded lake in autumn"
+            width="1320"
+            height="876"
+          />
+          <figcaption>
+            <span>Trip planning</span>
+            <span>Troop operations</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="workflow" id="workflow" aria-labelledby="workflow-title">
+        <div class="section-intro">
+          <p class="eyebrow">The original flow</p>
+          <h2 id="workflow-title">One small system, built around a real need.</h2>
+          <p>
+            The project connected a public trip response form to a lightweight
+            organizer view. It was early work, but it replaced an informal process
+            with one shared source of attendance information.
+          </p>
+        </div>
+
+        <ol class="flow-list">
+          <li>
+            <span class="flow-number">01</span>
+            <div>
+              <p>Response intake</p>
+              <h3>Families answered once.</h3>
+              <span>Name, contact details, trip, and a clear yes-or-no RSVP.</span>
+            </div>
+          </li>
+          <li>
+            <span class="flow-number">02</span>
+            <div>
+              <p>Replit key/value data</p>
+              <h3>Responses stayed grouped by trip.</h3>
+              <span>Each submission joined the attending or not-attending list.</span>
+            </div>
+          </li>
+          <li>
+            <span class="flow-number">03</span>
+            <div>
+              <p>Organizer view</p>
+              <h3>Trip rosters became visible.</h3>
+              <span>Leaders could review both lists from a server-rendered page.</span>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="artifact" aria-labelledby="artifact-title">
+        <div class="artifact-copy">
+          <p class="eyebrow">What the code shows</p>
+          <h2 id="artifact-title">An early operational Flask project.</h2>
+          <p>
+            BSA2 used Flask routes and templates with Replit’s database. It is
+            preserved as evidence of progression—not presented as a current,
+            secure, or deployable service.
+          </p>
+          <ul aria-label="Technologies and project status">
+            <li>Python + Flask</li>
+            <li>Server-rendered templates</li>
+            <li>Replit key/value storage</li>
+            <li>Archived, not maintained</li>
+          </ul>
+        </div>
+
+        <div class="roster-card" role="img" aria-label="Illustration of the archived RSVP workflow">
+          <div class="roster-top">
+            <span>TRIP / RSVP</span>
+            <span>ARCHIVE</span>
+          </div>
+          <p class="roster-label">Attendance response</p>
+          <div class="field-row">
+            <span>Name</span>
+            <i></i>
+          </div>
+          <div class="field-row">
+            <span>Trip</span>
+            <i></i>
+          </div>
+          <div class="choice-row">
+            <span><i>✓</i> Attending</span>
+            <span><i></i> Not attending</span>
+          </div>
+          <div class="roster-button">Record response</div>
+          <p class="roster-foot">Static illustration · no information is collected</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>BSA2 · Built in 2022 · Archived project</p>
+      <a href="https://ches.dev">Back to ches.dev <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
